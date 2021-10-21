@@ -5,6 +5,7 @@ import java.util.List;
 import dao.MedicamentoDAO;
 
 public class Farmacia implements MedicamentoDAO {
+
 	private List<Medicamento> medicamentos;
 
 	/**
@@ -14,7 +15,14 @@ public class Farmacia implements MedicamentoDAO {
 
 	}
 
-	@Override
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
 	public boolean guardar(Medicamento medicamento) {
 
 		return false;
@@ -32,7 +40,6 @@ public class Farmacia implements MedicamentoDAO {
 		return null;
 	}
 
-	@Override
 	public Medicamento buscar(String nombre) {
 		return null;
 	}

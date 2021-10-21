@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import dao.FarmaciaDOM;
 import modelo.Farmacia;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -48,15 +50,18 @@ class Main {
 	private static final String XSTREAM_XML_FILE = "xml/EmpresaXTREAM.xml";
 	private static final String DOM_XML_FILE = "xml/EmpleadosDOM.xml";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// ejemploJaxb();
 		// ejemploEscribirDOM();
 		// ejemploLeerDOM();
 		// ejemploEscribirXSTREAM();
 		// ejemploLeerXSTREAM();
-
-		File f = new File("medicamentos.bin");
-		f.deleteOnExit();
+		File fichero = new File("medicamentos.bin");
+		if(fichero.exists()){
+			fichero.deleteOnExit();
+		} else {
+			fichero.createNewFile();
+		}
 
 		Medicamento med1 = new Medicamento("Ibuprofeno",2.50,1,2,3,4);
 		Medicamento med2 = new Medicamento("Paracetamol",5.50,1,2,3,4);
@@ -65,16 +70,23 @@ class Main {
 		
 		medAl.guardar(med1);
 		medAl.guardar(med2);
-		
-		System.out.println(medAl.buscar(2));
-		
-		medAl.actualizar(med2);
-		
-		System.out.println(medAl.buscar(2));
-		
-		medAl.borrar(med2);
-		
-		System.out.println(medAl.buscar(2));
+
+		System.out.println(medAl.buscar(5).toString());
+
+		medAl.actualizar(med1);
+
+		System.out.println(medAl.buscar(1).toString());
+		System.out.println(medAl.buscar(2).toString());
+
+		System.out.println(medAl.buscar(1).toString());
+
+		Farmacia far1 = new Farmacia();
+		far1.guardar(med1);
+		far1.guardar(med2);
+
+		FarmaciaDOM far1Xml = new FarmaciaDOM();
+		far1Xml.guardar(far1);
+		far1Xml.leer(Path.of("prueba.xml"));
 		
 	}
 /*

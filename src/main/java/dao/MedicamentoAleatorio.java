@@ -48,32 +48,30 @@ public class MedicamentoAleatorio implements MedicamentoDAO {
 		Medicamento md = new Medicamento();
 		
 		try(RandomAccessFile raf = new RandomAccessFile("medicamentos.bin", "r")){
-			if(raf.length() < TAM_REGISTRO * cod) {
+			if(raf.length() < (TAM_REGISTRO * cod)) {
 				System.out.println(cod + " Este medicamento no existe...");
-			}
-			
-			raf.seek(cod * TAM_REGISTRO);
-			
-			for(int i = 0; i < TAM_NOMBRE; i++) {
-				char letra = raf.readChar();
+			} else{
+				raf.seek(cod * TAM_REGISTRO);
 
-				nombre += letra != 0 ? letra : ' ';
+				for(int i = 0; i < TAM_NOMBRE; i++) {
+					char letra = raf.readChar();
+
+					nombre += letra != 0 ? letra : ' ';
+				}
+				precio = raf.readDouble();
+				codigo = raf.readInt();
+				stock = raf.readInt();
+				stockMax = raf.readInt();
+				stockMin = raf.readInt();
+				codP = raf.readInt();
+
+				md = new Medicamento(nombre,codigo,precio,stock,stockMax,stockMin,codP);
 			}
-			precio = raf.readDouble();
-			codigo = raf.readInt();
-			stock = raf.readInt();
-			stockMax = raf.readInt();
-			stockMin = raf.readInt();
-			codP = raf.readInt();
-			
-			md = new Medicamento(nombre,codigo,precio,stock,stockMax,stockMin,codP);
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return md;
 	}
 
@@ -90,10 +88,9 @@ public class MedicamentoAleatorio implements MedicamentoDAO {
 	@Override
 	public boolean borrar(Medicamento medicamento) {
 		try(RandomAccessFile raf = new RandomAccessFile("medicamentos.bin", "rw")){
-			int posicion = (medicamento.getCod()-1) * TAM_REGISTRO;
-			byte[] b = new byte[88];
-			raf.seek(posicion);
-			raf.write(b,0,88);
+			int pos = (medicamento.getCod()-1) * TAM_REGISTRO;
+			raf.seek(pos+48);
+			raf.writeInt(110);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return false;

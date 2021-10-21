@@ -1,15 +1,12 @@
 package modelo;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import dao.MedicamentoDAO;
 
 public class Farmacia implements MedicamentoDAO {
-	static Scanner sc = new Scanner(System.in);
 
-	private List<Medicamento> medicamentos;
+	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
 	/**
 	 * Constructor de la farmacia
@@ -18,47 +15,37 @@ public class Farmacia implements MedicamentoDAO {
 
 	}
 
-	@Override
-	public boolean guardar(Medicamento medicamento) {
-		if(medicamentos.add(medicamento)){
-			return true;
-		} else {
-			return false;
-		}
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
 	}
 
-	@Override
-	public boolean borrar(Medicamento medicamento) {
-		Iterator it1 = medicamentos.iterator();
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
 
-		while(it1.hasNext()){
-			if(it1.next().equals(medicamento)){
-				it1.remove();
-			}
+	public boolean guardar(Medicamento medicamento) {
+		try{
+			medicamentos.add(medicamento);
+		} catch (Exception e){
+			System.out.println(e.toString());
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public Medicamento buscar(int cod) {
-		for(Medicamento list:medicamentos){
-			if(list.getCod() == cod){
-				return list;
-			}
-		}
-
 		return null;
 	}
 
 	@Override
+	public boolean borrar(Medicamento medicamento) {
+
+		return false;
+	}
+
+	@Override
 	public boolean actualizar(Medicamento medicamento) {
-		for(Medicamento list:medicamentos){
-			if(list.equals(medicamento)){
-				System.out.println("Introduce el nuevo precio:");
-				list.setPrecio(Integer.parseInt(sc.nextLine()));
-				return true;
-			}
-		}
 		return false;
 	}
 }

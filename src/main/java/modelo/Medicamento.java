@@ -19,10 +19,9 @@ public class Medicamento implements Serializable {
 	private int stockMaximo; // 4 bytes
 	private int stockMinimo; // 4 bytes
 	private int codProveedor; // 4 bytes
-	private int contador=1; 
+	private static int contador = 1;
 
-	public Medicamento(String nombre, double precio, int stock, int stockMaximo, int stockMinimo,
-			int codProveedor) {
+	public Medicamento(String nombre, double precio, int stock, int stockMaximo, int stockMinimo, int codProveedor) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio + (precio * IVA);
@@ -32,6 +31,17 @@ public class Medicamento implements Serializable {
 		this.stockMinimo = stockMinimo;
 		this.codProveedor = codProveedor;
 		contador++;
+	}
+
+	public Medicamento(String nombre, int cod, double precio, int stock, int stockMaximo, int stockMinimo, int codProveedor) {
+		super();
+		this.nombre = nombre;
+		this.precio = precio + (precio * IVA);
+		this.cod = cod;
+		this.stock = stock;
+		this.stockMaximo = stockMaximo;
+		this.stockMinimo = stockMinimo;
+		this.codProveedor = codProveedor;
 	}
 
 	public Medicamento() {

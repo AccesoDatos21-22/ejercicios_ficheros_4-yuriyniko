@@ -22,6 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import modelo.Farmacia;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,14 +31,16 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
-import com.thoughtworks.xstream.XStream;
+import dao.MedicamentoAleatorio;
+/*import com.thoughtworks.xstream.XStream;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.Unmarshaller;*/
 import modelo.Empleado;
 import modelo.Empresa;
+import modelo.Medicamento;
 
 class Main {
 
@@ -51,8 +54,30 @@ class Main {
 		// ejemploLeerDOM();
 		// ejemploEscribirXSTREAM();
 		// ejemploLeerXSTREAM();
-	}
 
+		File f = new File("medicamentos.bin");
+		f.deleteOnExit();
+
+		Medicamento med1 = new Medicamento("Ibuprofeno",2.50,1,2,3,4);
+		Medicamento med2 = new Medicamento("Paracetamol",5.50,1,2,3,4);
+		
+		MedicamentoAleatorio medAl = new MedicamentoAleatorio();
+		
+		medAl.guardar(med1);
+		medAl.guardar(med2);
+		
+		System.out.println(medAl.buscar(2));
+		
+		medAl.actualizar(med2);
+		
+		System.out.println(medAl.buscar(2));
+		
+		medAl.borrar(med2);
+		
+		System.out.println(medAl.buscar(2));
+		
+	}
+/*
 	private static void ejemploEscribirXSTREAM() {
 
 		try {
@@ -271,4 +296,5 @@ class Main {
 			e.printStackTrace();
 		}
 	}
+	*/
 }

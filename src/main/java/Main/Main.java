@@ -22,6 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import dao.FarmaciaXSTREAM;
 import modelo.Farmacia;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -63,7 +64,7 @@ class Main {
 		
 		MedicamentoAleatorio medAl = new MedicamentoAleatorio();
 		
-		medAl.guardar(med1);
+		/*medAl.guardar(med1);
 		medAl.guardar(med2);
 		
 		System.out.println(medAl.buscar(2));
@@ -75,7 +76,14 @@ class Main {
 		medAl.borrar(med2);
 		
 		System.out.println(medAl.buscar(2));
-		
+		*/
+
+		Farmacia far1 = new Farmacia();
+		far1.guardar(med1);
+		far1.guardar(med2);
+
+		FarmaciaXSTREAM farX = new FarmaciaXSTREAM();
+		farX.guardar(far1);
 	}
 /*
 	private static void ejemploEscribirXSTREAM() {

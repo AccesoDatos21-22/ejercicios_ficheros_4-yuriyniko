@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -9,11 +10,22 @@ import dao.MedicamentoDAO;
 public class Farmacia implements MedicamentoDAO {
 	static Scanner sc = new Scanner(System.in);
 
-	private List<Medicamento> medicamentos;
+	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
 
 	/**
 	 * Constructor de la farmacia
 	 */
+
+
+
 	public Farmacia() {
 
 	}

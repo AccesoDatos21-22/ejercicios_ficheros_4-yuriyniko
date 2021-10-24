@@ -83,6 +83,7 @@ class Main {
 		medAl.borrar(med1);
 
 		System.out.println(medAl.buscar(1).toString());
+		System.out.println(medAl.buscar(2).toString());
 
 		Farmacia far1 = new Farmacia();
 		far1.guardar(med1);

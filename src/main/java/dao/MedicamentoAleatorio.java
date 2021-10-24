@@ -86,7 +86,7 @@ public class MedicamentoAleatorio implements MedicamentoDAO {
 				return false;
 			} else{
 				System.out.println("Introduce el nuevo precio");
-				double precio = Double.parseDouble(sc.nextLine());
+				double precio = 10;//Double.parseDouble(sc.nextLine());
 				medicamento.setPrecio(precio);
 
 				guardar(medicamento);

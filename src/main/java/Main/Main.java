@@ -78,6 +78,10 @@ class Main {
 		System.out.println(medAl.buscar(1).toString());
 		System.out.println(medAl.buscar(2).toString());
 
+		System.out.println("\n Voy a borrar el 1");
+
+		medAl.borrar(med1);
+
 		System.out.println(medAl.buscar(1).toString());
 
 		Farmacia far1 = new Farmacia();

@@ -124,7 +124,7 @@ public class Medicamento implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Codigo:" + cod + "\n Nombre: " + nombre + "\n Precio:" + precio + "€" + "\n Stock:" + stock
+		return "Codigo:" + cod + "\n Nombre: " + nombre + "\n Precio:" + ((double) Math.round(precio * 100d) / 100d) + "€" + "\n Stock:" + stock
 				+ "\n Proveedor:" + codProveedor;
 	}
 

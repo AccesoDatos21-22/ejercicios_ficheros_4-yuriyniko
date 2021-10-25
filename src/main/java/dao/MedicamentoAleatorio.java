@@ -12,7 +12,6 @@ public class MedicamentoAleatorio implements MedicamentoDAO {
 	public final static int TAM_NOMBRE = 30;
 	public final static int TAM_REGISTRO = 88;
 	public static String fichero = "medicamentos.bin";
-	static Scanner sc = new Scanner(System.in);
 	
 	@Override
 	public boolean guardar(Medicamento medicamento) {
@@ -85,10 +84,7 @@ public class MedicamentoAleatorio implements MedicamentoDAO {
 				System.out.println("El medicamento que buscas no existe...");
 				return false;
 			} else{
-				System.out.println("Introduce el nuevo precio");
-				double precio = 10;//Double.parseDouble(sc.nextLine());
-				medicamento.setPrecio(precio);
-
+				medicamento.setPrecio(100);
 				guardar(medicamento);
 			}
 		} catch (FileNotFoundException e) {

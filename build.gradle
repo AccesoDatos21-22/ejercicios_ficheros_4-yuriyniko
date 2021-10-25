@@ -34,8 +34,7 @@ dependencies {
     
     // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
 	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '3.0.0'
-    
-    // https://mvnrepository.com/artifact/xstream/xstream
-	implementation group: 'xstream', name: 'xstream', version: '1.2.2'
-    
+
+    // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
+    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.18'
 }

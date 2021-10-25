@@ -37,6 +37,4 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
     implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.18'
-
-
 }

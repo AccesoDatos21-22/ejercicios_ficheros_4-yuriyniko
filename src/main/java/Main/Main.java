@@ -23,8 +23,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import com.thoughtworks.xstream.XStream;
 import dao.FarmaciaDOM;
-import dao.FarmaciaXSTREAM;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import modelo.Farmacia;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -35,12 +39,6 @@ import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 import dao.MedicamentoAleatorio;
-/*import com.thoughtworks.xstream.XStream;
-
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;*/
 import modelo.Empleado;
 import modelo.Empresa;
 import modelo.Medicamento;
@@ -64,38 +62,41 @@ class Main {
 			fichero.createNewFile();
 		}
 
-		Medicamento med1 = new Medicamento("Ibuprofeno",2.50,1,2,3,4);
-		Medicamento med2 = new Medicamento("Paracetamol",5.50,1,2,3,4);
-		
+		Medicamento med1 = new Medicamento("Paracetamol",2.50,30,100,10,1);
+		Medicamento med2 = new Medicamento("Ibuprofeno",3.75, 12,100,10,2);
+
 		MedicamentoAleatorio medAl = new MedicamentoAleatorio();
+
+		System.out.println("Guardamos los medicamentos en el archivo");
+		System.out.println(medAl.guardar(med1));
+		System.out.println(medAl.guardar(med2));
+
+		System.out.println("Buscar medicamento");
+		System.out.println(medAl.buscar(1).toString());
+
+		System.out.println("Actualizamos medicamento");
+		System.out.println(medAl.actualizar(med1));
+		System.out.println(medAl.buscar(1));
+
+		System.out.println("Borramos medicamento");
+		System.out.println(medAl.borrar(med2));
+
+		Farmacia far = new Farmacia();
+		System.out.println("Guardamos medicamentos en farmacia");
+		far.guardar(med1);
+		far.guardar(med2);
+
+		FarmaciaDOM farDom = new FarmaciaDOM();
+		System.out.println("Guardamos farmacia en xml");
+		farDom.guardar(far);
+
+		System.out.println("Leemos los medicamentos del xml");
+		farDom.leer(Path.of("farmaciaXML.xml"));
+
 		
-		medAl.guardar(med1);
-		medAl.guardar(med2);
 
-		System.out.println(medAl.buscar(5).toString());
-
-		medAl.actualizar(med1);
-
-		System.out.println(medAl.buscar(1).toString());
-		System.out.println(medAl.buscar(2).toString());
-
-		System.out.println("\n Voy a borrar el 1");
-
-		medAl.borrar(med1);
-
-		System.out.println(medAl.buscar(1).toString());
-		System.out.println(medAl.buscar(2).toString());
-
-		Farmacia far1 = new Farmacia();
-		far1.guardar(med1);
-		far1.guardar(med2);
-
-
-		FarmaciaDOM far1Xml = new FarmaciaDOM();
-		far1Xml.guardar(far1);
-		far1Xml.leer(Path.of("prueba.xml"));
 	}
-/*
+
 	private static void ejemploEscribirXSTREAM() {
 
 		try {
@@ -314,5 +315,4 @@ class Main {
 			e.printStackTrace();
 		}
 	}
-	*/
 }

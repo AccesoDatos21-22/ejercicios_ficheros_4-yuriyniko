@@ -24,6 +24,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import dao.FarmaciaDOM;
+import dao.FarmaciaXSTREAM;
 import modelo.Farmacia;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -89,10 +90,10 @@ class Main {
 		far1.guardar(med1);
 		far1.guardar(med2);
 
+
 		FarmaciaDOM far1Xml = new FarmaciaDOM();
 		far1Xml.guardar(far1);
 		far1Xml.leer(Path.of("prueba.xml"));
-		
 	}
 /*
 	private static void ejemploEscribirXSTREAM() {

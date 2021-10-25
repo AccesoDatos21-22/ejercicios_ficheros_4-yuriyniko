@@ -1,0 +1,20 @@
+<list>
+  <Medicamento>
+    <nombre>Ibuprofeno</nombre>
+    <precio>2.599999997764826</precio>
+    <cod>1</cod>
+    <stock>1</stock>
+    <stockMaximo>2</stockMaximo>
+    <stockMinimo>3</stockMinimo>
+    <codProveedor>4</codProveedor>
+  </Medicamento>
+  <Medicamento>
+    <nombre>Paracetamol</nombre>
+    <precio>5.719999995082617</precio>
+    <cod>2</cod>
+    <stock>1</stock>
+    <stockMaximo>2</stockMaximo>
+    <stockMinimo>3</stockMinimo>
+    <codProveedor>4</codProveedor>
+  </Medicamento>
+</list>

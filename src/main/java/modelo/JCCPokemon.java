@@ -1,11 +1,20 @@
 package modelo;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@XmlRootElement(name = "JCCPokemon")
+@XmlType(propOrder = {"fechaLanzamiento", "numCartas"})
+
 public class JCCPokemon implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	private List<Pokemon> pokemones;
 	private Date fechaLanzamiento;
@@ -27,6 +36,7 @@ public class JCCPokemon implements Serializable {
 		return fechaLanzamiento;
 	}
 
+	@XmlElement
 	public void setFechaLanzamiento(Date fechaLanzamiento) {
 		this.fechaLanzamiento = fechaLanzamiento;
 	}
@@ -35,6 +45,7 @@ public class JCCPokemon implements Serializable {
 		return numCartas;
 	}
 
+	@XmlElement
 	public void setNumCartas(int numCartas) {
 		this.numCartas = numCartas;
 	}

@@ -16,10 +16,9 @@ public class MedicamentoAleatorioTest {
     }
 
     @Test
-    public void probarBuscar(){
-        Assert.assertEquals(med, medAl.buscar(5)); //Por que me coge código 3
+    public void probarBuscar() {
+        Assert.assertEquals(med, medAl.buscar(3)); //Por que me coge código 3
     }
-
     @Test
     public void probarActualizar(){
         Assert.assertTrue(medAl.actualizar(med1)); //Como introducir los datos que me pide la pantalla
@@ -29,5 +28,6 @@ public class MedicamentoAleatorioTest {
     public void probarBorrar(){
         Assert.assertTrue(medAl.borrar(med));
     }
+
 
 }

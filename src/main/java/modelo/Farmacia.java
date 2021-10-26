@@ -3,8 +3,10 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import dao.MedicamentoDAO;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import dao.MedicamentoDAO;
+@XStreamAlias("Farmacia")
 public class Farmacia implements MedicamentoDAO {
 
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();

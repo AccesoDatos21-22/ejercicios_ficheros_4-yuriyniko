@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JCCPokemon fechaLanzamiento="2021-10-26T10:47:40.552+02:00" numCartas="2">
+    <pokemones>
+        <id>7</id>
+        <nombre>Pikachu</nombre>
+        <defensa>12</defensa>
+        <ataque>45</ataque>
+        <vida>6</vida>
+    </pokemones>
+    <pokemones>
+        <id>1</id>
+        <nombre>Pichu</nombre>
+        <defensa>5</defensa>
+        <ataque>7</ataque>
+        <vida>2</vida>
+    </pokemones>
+</JCCPokemon>

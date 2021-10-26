@@ -1,4 +1,4 @@
-<list>
+<Farmacia>
   <Medicamento>
     <nombre>Paracetamol</nombre>
     <precio>100.0</precio>
@@ -17,4 +17,4 @@
     <stockMinimo>10</stockMinimo>
     <codProveedor>2</codProveedor>
   </Medicamento>
-</list>
+</Farmacia>

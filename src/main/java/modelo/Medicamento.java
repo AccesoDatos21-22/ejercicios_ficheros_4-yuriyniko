@@ -1,8 +1,11 @@
 package modelo;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@XStreamAlias("Medicamento")
 public class Medicamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

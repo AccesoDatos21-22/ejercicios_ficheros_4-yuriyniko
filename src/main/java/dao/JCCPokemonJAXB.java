@@ -8,19 +8,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class JCCPokemonJAXB implements JCCPokemonDAO {
+
+	private final String ficheroPath = ".\\xml\\PokemonesJAXB.xml";
 
 	@Override
 	public JCCPokemon leer() {
 
 		try {
-			JAXBContext context = JAXBContext.newInstance(Pokemon.class);
+			JAXBContext context = JAXBContext.newInstance(JCCPokemon.class);
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			Marshaller marshaller = context.createMarshaller();
 
-			Pokemon pokemonAux = (Pokemon) unmarshaller.unmarshal(Files.newInputStream(Paths.get(".\\xml\\PokemonesJAXB.xml")));
+			JCCPokemon pokemonAux = (JCCPokemon) unmarshaller.unmarshal(Files.newInputStream(Paths.get(this.ficheroPath)));
 			System.out.println("** pokemon cargado desde fichero XML**");
 
 			marshaller.marshal(pokemonAux, System.out);
@@ -37,16 +40,14 @@ public class JCCPokemonJAXB implements JCCPokemonDAO {
 
 	@Override
 	public boolean guardar(JCCPokemon pokemones) {
-		List<Pokemon> lista;
-		lista = pokemones.getPokemones();
-
-		for(Pokemon pokemon:lista) {
+		pokemones.setNumCartas(pokemones.getPokemones().size());
+		pokemones.setFechaLanzamiento(new Date(System.currentTimeMillis()));
 			try {
-				JAXBContext context = JAXBContext.newInstance(Pokemon.class);
+				JAXBContext context = JAXBContext.newInstance(JCCPokemon.class);
 				Marshaller marshaller = context.createMarshaller();
 
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				marshaller.marshal(pokemon, Files.newOutputStream(Paths.get("??????")));
+				marshaller.marshal(pokemones, Files.newOutputStream(Paths.get(this.ficheroPath)));
 			} catch (PropertyException e) {
 				e.printStackTrace();
 			} catch (JAXBException e) {
@@ -54,7 +55,7 @@ public class JCCPokemonJAXB implements JCCPokemonDAO {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+
 		return true;
 	}
 

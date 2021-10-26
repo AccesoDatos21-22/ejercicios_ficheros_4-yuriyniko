@@ -24,12 +24,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import com.thoughtworks.xstream.XStream;
-import dao.FarmaciaDOM;
+import dao.*;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
-import modelo.Farmacia;
+import modelo.*;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -37,11 +37,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
-
-import dao.MedicamentoAleatorio;
-import modelo.Empleado;
-import modelo.Empresa;
-import modelo.Medicamento;
 
 class Main {
 
@@ -93,7 +88,28 @@ class Main {
 		System.out.println("Leemos los medicamentos del xml");
 		farDom.leer(Path.of("farmaciaXML.xml"));
 
-		
+		System.out.println("Creamos Pokemones");
+		Pokemon pok1 = new Pokemon("Pikachu", 12,45,6,7);
+		Pokemon pok2 = new Pokemon("Pichu",5,7,2,1);
+
+		System.out.println("Guardamos los pokemones");
+		JCCPokemon jcc = new JCCPokemon();
+		jcc.guardar(pok1);
+		jcc.guardar(pok2);
+
+		System.out.println("Escribimos pokemones en xml con jaxb");
+		JCCPokemonJAXB jaxb = new JCCPokemonJAXB();
+		jaxb.guardar(jcc);
+
+		System.out.println("Leemos los pokemones del xml");
+		jaxb.leer();
+
+		System.out.println("Xstream guardar en fichero");
+		FarmaciaXSTREAM farXSTREAM = new FarmaciaXSTREAM();
+		farXSTREAM.guardar(far);
+
+		System.out.println("Leemos con xstream");
+		farXSTREAM.leer().toString();
 
 	}
 
